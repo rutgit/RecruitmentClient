@@ -1,0 +1,69 @@
+
+<p-toolbar class="my-toolbar" styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <!-- <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNew()"></button> -->
+            <!-- [label]="Delete" -->
+        <!-- <button pButton pRipple lable="Delete" icon="pi pi-chart-pie" class="p-button-danger"
+            (click)="deleteSelectedWorkers()" [disabled]="!selectedWorkers || !selectedWorkers.length"></button> -->
+    </ng-template>
+    <ng-template pTemplate="center">
+        <h1>Workers</h1>   
+    </ng-template>
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+    </ng-template>
+</p-toolbar>
+<div class="my-css">
+    <p-table #dt [value]="Workers" [rows]="5" [paginator]="true"
+        [globalFilterFields]="['id','name','beginYear','lastUpdateDate','languages']" [(selection)]="selectedWorkers"
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage Workers</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="beginYear">Begin Year <p-sortIcon field="beginYear"></p-sortIcon></th>
+                <th pSortableColumn="lastUpdateDate">Last Update Date <p-sortIcon field="lastUpdateDate"></p-sortIcon></th>
+                <th pSortableColumn="languages">Languages <p-sortIcon field="languages"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-Worker>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="Workers"></p-tableCheckbox>
+                </td>
+                <td>{{Worker.id}}</td>
+                <td>{{Worker.name}}</td>
+                <td>{{Worker.beginYear}}</td>
+                <td>{{Worker.lastUpdateDate}}</td>
+                <td *ngFor="let l of languages">{{Worker.languages}}</td>
+                <td>
+                  
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <!-- <div class="flex align-items-center justify-content-between">
+                In total there are {{Workers ? Workers.length : 0 }} Workers.
+            </div> -->
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+
+
